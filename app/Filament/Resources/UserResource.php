@@ -22,7 +22,8 @@ class UserResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name'),
                 Forms\Components\MultiSelect::make('roles')
-                    ->relationship('roles', 'name'),
+                    ->relationship('roles', 'name')
+                    ->preload(),
             ]);
     }
 
