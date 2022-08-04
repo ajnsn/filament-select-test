@@ -2,17 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Models\User;
+use App\Filament\Resources\RoleResource\Pages;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Spatie\Permission\Models\Role;
 
-class UserResource extends Resource
+class RoleResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Role::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -21,8 +21,6 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name'),
-                Forms\Components\MultiSelect::make('roles')
-                    ->relationship('roles', 'name'),
             ]);
     }
 
@@ -53,9 +51,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListRoles::route('/'),
+            'create' => Pages\CreateRole::route('/create'),
+            'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
     }
 }
